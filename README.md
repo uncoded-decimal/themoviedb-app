@@ -35,6 +35,7 @@ A flutter project implementing [themoviedb](https://www.themoviedb.org/) APIs us
 8. Other Packages:
 
    [flutter_svg](https://pub.dev/packages/flutter_svg), [google_fonts](https://pub.dev/packages/google_fonts), [cached_network_image](https://pub.dev/packages/cached_network_image) and [shimmer](https://pub.dev/packages/shimmer) are used to help develop the App UI.
+
    
 
 ## Notable Classes
@@ -52,3 +53,10 @@ A flutter project implementing [themoviedb](https://www.themoviedb.org/) APIs us
    Uses a `Path` to clip it's child to draw a fancy shape.
 
 
+
+## Useful Techniques 
+
+1. Performed an auto scroll after each page fetched for Now Playing section. This helped refresh the `DotsIndicator` state to display the correct digits while also providing for a good UX.
+2. Pre-caching the first 2 images from Now Playing and Top Rated API Call responses for a smooth loading experience going into Home screen. 2 for each API because the first visible tiles for each List would be the first 2 elements.
+3. Opened a `Hive` Box soon as the app launches so Local Database can be accessed without any delays of operation.
+4. [flutter_launcher_icons](https://pub.dev/packages/flutter_launcher_icons) for generating Launcher Icons.
