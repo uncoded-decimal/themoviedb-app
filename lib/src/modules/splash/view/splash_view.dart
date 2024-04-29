@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:wework_challenge/src/app/helpers/intent_helper.dart';
 import 'package:wework_challenge/src/modules/splash/controller/splash_bloc.dart';
-import 'package:wework_challenge/src/utils/utils.dart';
+import 'package:wework_challenge/src/modules/splash/widgets/we_loader.dart';
 
 class SplashView extends StatelessWidget {
   const SplashView({super.key});
@@ -28,15 +27,8 @@ class SplashView extends StatelessWidget {
             );
           }
         },
-        child: Container(
-          height: 150,
-          width: 150,
-          alignment: Alignment.center,
-          child: SvgPicture.asset(
-            getLocalSvg('logo'),
-            height: 150,
-            width: 150,
-          ),
+        child: const Center(
+          child: WeLoadingWidget(),
         ),
       ),
     );
