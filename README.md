@@ -1,16 +1,54 @@
 # wework_challenge
 
-A new Flutter project.
+A flutter project implementing [themoviedb](https://www.themoviedb.org/) APIs using bloc.
 
-## Getting Started
+## Plugins and Packages used
 
-This project is a starting point for a Flutter application.
+1. [flutter_bloc](https://pub.dev/packages/flutter_bloc):
 
-A few resources to get you started if this is your first Flutter project:
+   Used for the basic implementation of BLoC architecture.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+2. [equatable](https://pub.dev/packages/equatable):
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+   Comparision between multiple instances of Events and States is performed throught the `props` list provided by this package.
+
+3. [geolocator](https://pub.dev/packages/geolocator):
+
+   Provides access to the on-device location APIs, allowing managing Location Permission and Service.
+
+4. [geocoding](https://pub.dev/packages/geocoding):
+
+   Uses on-device APIs to perform easy geocoding and reverse-geocoding.
+
+5. [dio](https://pub.dev/packages/dio):
+
+   HTTP networking client to perform API calls.
+
+6. [hive](https://pub.dev/packages/hive):
+
+   Local Database plugin. Uses `Box`es for data storage.
+
+7. [flutter_cache_manager](https://pub.dev/packages/flutter_cache_manager):
+
+   Provides a cache manager used to Pre-Cache images.
+
+8. Other Packages:
+
+   [flutter_svg](https://pub.dev/packages/flutter_svg), [google_fonts](https://pub.dev/packages/google_fonts), [cached_network_image](https://pub.dev/packages/cached_network_image) and [shimmer](https://pub.dev/packages/shimmer) are used to help develop the App UI.
+   
+
+## Notable Classes
+
+1. __LoggingIngterceptor__:
+
+   Works with Dio HTTP client to log API calls' Request and Responses for Easy Debugging.
+   
+2. __DotsIndicator__:
+
+   Works in conjunction with Now Playing movies list to display a page and index indicator.
+
+3. __NowPlayingClipper__:
+
+   Uses a `Path` to clip it's child to draw a fancy shape.
+
+
