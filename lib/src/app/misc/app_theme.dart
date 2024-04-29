@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:wework_challenge/src/app/misc/app_colors.dart';
 import 'package:wework_challenge/src/app/misc/app_textstyles.dart';
 
@@ -10,6 +11,7 @@ class AppTheme {
       backgroundColor: Colors.transparent,
       centerTitle: false,
       elevation: 0,
+      systemOverlayStyle: SystemUiOverlayStyle.light,
     ),
     inputDecorationTheme: InputDecorationTheme(
       hintStyle: AppTextStyles.light16P(color: Colors.grey.shade500),

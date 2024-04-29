@@ -33,7 +33,7 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
         return _checkLocationPermissionAndServiceStatus(emit);
       }
 
-      final permissionStatus = await Geolocator.requestPermission();
+      final permissionStatus = await Geolocator.checkPermission();
       if (permissionStatus == LocationPermission.always ||
           permissionStatus == LocationPermission.whileInUse) {
         /// will have no issues access device location
@@ -43,6 +43,7 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
           message: 'Location Permission is Needed to access our services',
         ));
         await Future.delayed(const Duration(seconds: 2));
+        await Geolocator.requestPermission();
         return _checkLocationPermissionAndServiceStatus(emit);
       } else if (permissionStatus == LocationPermission.deniedForever) {
         emit(const SplashToast(

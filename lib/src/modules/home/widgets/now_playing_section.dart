@@ -237,7 +237,7 @@ class _MovieTile extends StatelessWidget {
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
           child: Container(
-            width: width,
+            width: double.infinity,
             padding: const EdgeInsets.fromLTRB(16, 8, 32, 16),
             // alignment: Alignment.bottomCenter,
             // constraints: BoxConstraints(maxHeight: width / 2),

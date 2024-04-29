@@ -37,6 +37,8 @@ flutter_launcher_icons:
   ios: true
   image_path: "assets/png/logo.png"
   adaptive_icon_background: "#ffffff"
+  background_color_ios: "#ffffff"
+  remove_alpha_ios: true
 
 flutter:
   uses-material-design: true
