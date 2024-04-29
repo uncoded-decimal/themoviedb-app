@@ -183,6 +183,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       emit(HomeAlert(
         text: "$e",
       ));
+      emit(NowPlayingLoaded(
+        imageBaseUrl: LocalStorageHelper.getImageBaseUrl(),
+        movieResponseModel: nowPlayingMovies!,
+      ));
     }
   }
 
@@ -197,21 +201,31 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
             imageBaseUrl: LocalStorageHelper.getImageBaseUrl(),
             movieResponseModel: topRatedMovies!,
           ));
-    final response = await moviesRepository.fetchTopRated(
-        page: page, forceFetchApiData: forceAPIFetch);
-    if (response != null) {
-      final moviesList = topRatedMovies?.movies ?? [];
-      moviesList.addAll(response.movies);
-      topRatedMovies = MovieResponseModel(
-        page: response.page,
-        totalCount: response.totalCount,
-        totalPages: response.totalPages,
-        movies: moviesList,
-      );
+    try {
+      final response = await moviesRepository.fetchTopRated(
+          page: page, forceFetchApiData: forceAPIFetch);
+      if (response != null) {
+        final moviesList = topRatedMovies?.movies ?? [];
+        moviesList.addAll(response.movies);
+        topRatedMovies = MovieResponseModel(
+          page: response.page,
+          totalCount: response.totalCount,
+          totalPages: response.totalPages,
+          movies: moviesList,
+        );
+      }
+      emit(TopRatedLoaded(
+        imageBaseUrl: LocalStorageHelper.getImageBaseUrl(),
+        movieResponseModel: topRatedMovies!,
+      ));
+    } on Exception catch (e) {
+      emit(TopRatedLoaded(
+        imageBaseUrl: LocalStorageHelper.getImageBaseUrl(),
+        movieResponseModel: topRatedMovies!,
+      ));
+      emit(HomeAlert(
+        text: "$e",
+      ));
     }
-    emit(TopRatedLoaded(
-      imageBaseUrl: LocalStorageHelper.getImageBaseUrl(),
-      movieResponseModel: topRatedMovies!,
-    ));
   }
 }

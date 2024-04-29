@@ -48,15 +48,19 @@ class MoviesRepositoryImpl extends MoviesRepository {
         return locallySavedInfo;
       }
     }
-
-    final topRatedResponse = await _moviesSource.fetchTopRated(page: page);
-    if (topRatedResponse != null && page == 1) {
-      LocalStorageHelper.setTopRatedPage1Data(topRatedResponse);
-      for (final item in topRatedResponse.movies.getRange(0, 2)) {
-        await _precacheImage(item.posterPath);
+    final connected = await isConnected();
+    if (connected) {
+      final topRatedResponse = await _moviesSource.fetchTopRated(page: page);
+      if (topRatedResponse != null && page == 1) {
+        LocalStorageHelper.setTopRatedPage1Data(topRatedResponse);
+        for (final item in topRatedResponse.movies.getRange(0, 2)) {
+          await _precacheImage(item.posterPath);
+        }
       }
+      return topRatedResponse;
+    } else {
+      throw Exception('No Internet Connection');
     }
-    return topRatedResponse;
   }
 
   @override
