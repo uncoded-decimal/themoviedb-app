@@ -44,7 +44,13 @@ class _DotsIndicatorState extends State<DotsIndicator> {
     final List<Widget> rowChildren = [];
     if (isScrollControllerAttached) {
       final currentScrollIndex = widget.controller.offset;
-      final totalScrollExtent = widget.controller.position.maxScrollExtent;
+      double totalScrollExtent = widget.controller.position.maxScrollExtent;
+      if (totalScrollExtent == 0) {
+        /// maxScrollExtent may be `0` if there isn't any element beyond the
+        /// scroll viewport. Giving it a small number, i.e., making it `1`
+        /// helps by avoiding the Null conditions
+        totalScrollExtent++;
+      }
       final itemExtent = totalScrollExtent / (widget.moviesList.length);
       final currentIndex = (currentScrollIndex ~/ itemExtent) + 1;
       int range = widget.moviesList.length ~/ widget.dotsCount;
