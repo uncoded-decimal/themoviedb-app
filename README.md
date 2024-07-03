@@ -1,5 +1,3 @@
-# wework_challenge
-
 A flutter project implementing [themoviedb](https://www.themoviedb.org/) APIs using bloc.
 
 ## Plugins and Packages used
